@@ -83,7 +83,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Men",
             "size":"UK 9",
             "colour":"Black",
-            "status":"ready"
+            "status":"ready",
+            "initials":"JH",
         },
         {
             "id":2,
@@ -93,7 +94,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Women",
             "size":"UK 4",
             "colour":"Red/Org",
-            "status":"ready"
+            "status":"on-the-way",
+            "initials":"DJ",
         },
         {
             "id":3,
@@ -103,7 +105,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Men",
             "size":"UK 11",
             "colour":"Pink",
-            "status":"In the Queue"
+            "status":"queued",
+            "initials":"GMGC",
         },
         {
             "id":4,
@@ -113,7 +116,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Junior",
             "size":"UK 3",
             "colour":"Blue",
-            "status":"In the Queue"
+            "status":"out-of-stock",
+            "initials":"RL",
         },
         {
             "id":5,
@@ -123,7 +127,7 @@ app.get('/api/items', (req, res, next) =>
             "category":"Women",
             "size":"UK 4",
             "colour":"Red/Org",
-            "status":"ready"
+            "status":"ready",
         },
         {
             "id":6,
@@ -133,7 +137,7 @@ app.get('/api/items', (req, res, next) =>
             "category":"Men",
             "size":"UK 11",
             "colour":"Pink",
-            "status":"In the Queue"
+            "status":"In the Queue",
         },
         {
             "id":7,
@@ -143,7 +147,7 @@ app.get('/api/items', (req, res, next) =>
             "category":"Junior",
             "size":"UK 3",
             "colour":"Blue",
-            "status":"In the Queue"
+            "status":"In the Queue",
         },
         {
             "id":8,
@@ -153,7 +157,7 @@ app.get('/api/items', (req, res, next) =>
             "category":"Men",
             "size":"UK 9",
             "colour":"Black",
-            "status":"ready"
+            "status":"ready",
         },
         {
             "id":9,
@@ -163,7 +167,7 @@ app.get('/api/items', (req, res, next) =>
             "category":"Women",
             "size":"UK 4",
             "colour":"Red/Org",
-            "status":"ready"
+            "status":"ready",
         },
         {
             "id":10,
@@ -173,7 +177,7 @@ app.get('/api/items', (req, res, next) =>
             "category":"Junior",
             "size":"UK 3",
             "colour":"Blue",
-            "status":"In the Queue"
+            "status":"In the Queue",
         },
         {
             "id":11,
@@ -183,7 +187,7 @@ app.get('/api/items', (req, res, next) =>
             "category":"Men",
             "size":"UK 11",
             "colour":"Pink",
-            "status":"In the Queue"
+            "status":"In the Queue",
         },
     ]
 

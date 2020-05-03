@@ -58,30 +58,35 @@ class HomePage extends React.Component
 					{pageOfItems.map(item =>
 					<div key={item.id} id={item.id} className="row">
 						<div className="inner">
-							<div className="status">
-							{item.status}
+							<div className={`status ${item.status}`}>
+							{/* {item.status} */}
 							</div>
-							<div className="col">{item.img}
+							<div className="col img col-2 align-self-center">
 								<img src={`./public/images/${item.id}.jpg`}></img>
 								{/* <img src="https://source.unsplash.com/100x100/?trainer"></img> */}
 							</div>
-							<div className="col title">
+							<div className="col title align-self-center">
 								{item.brand}<br/>
 								{item.name}<br/>
 								{item.make}<br/>
 								{/* {this.randomiser(item.make, item.id)} */}
 							</div> 
-							<div className="col">
+							<div className="col align-self-center">
 								Category : <br/>
 								<b>{item.category}</b>
 							</div> 
-							<div className="col">
+							<div className="col align-self-center">
 								Size : <br/>
 								<b>{item.size}</b>
 							</div>
-							<div className="col">
+							<div className="col align-self-center">
 								Colour : <br/>
 								<b>{item.colour}</b>
+							</div>
+							<div className="col initials align-self-center">
+								<div className="col box align-self-center justify-content-center">
+									<b>{item.initials }</b>
+								</div>
 							</div>
 						</div> 
 					</div>
