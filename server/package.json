@@ -9,7 +9,8 @@
         "body-parser": "^1.18.3",
         "cors": "^2.8.4",
         "express": "^4.17.1",
-        "jw-paginate": "^1.0.4"
+        "jw-paginate": "^1.0.4",
+        "mongoose": "^5.9.11"
     },
     "devDependencies": {
         "nodemon": "^1.19.4"

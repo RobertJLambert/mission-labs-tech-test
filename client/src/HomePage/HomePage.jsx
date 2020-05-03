@@ -57,32 +57,38 @@ class HomePage extends React.Component
                 <div className="card-body"> 
 					{pageOfItems.map(item =>
 					<div key={item.id} id={item.id} className="row">
-							<div className="inner">
+						<div className="inner">
 							<div className="status">
-									
+							{item.status}
 							</div>
-							<div className="col">
-								<img src="https://source.unsplash.com/100x60/?trainer"></img>
+							<div className="col">{item.img}
+								<img src={`./public/images/${item.id}.jpg`}></img>
+								{/* <img src="https://source.unsplash.com/100x100/?trainer"></img> */}
 							</div>
-							<div className="col">
-								{this.randomiser(item.make, item.id)}
-								<br/>
+							<div className="col title">
+								{item.brand}<br/>
+								{item.name}<br/>
+								{item.make}<br/>
+								{/* {this.randomiser(item.make, item.id)} */}
 							</div> 
 							<div className="col">
-								{item.category}
+								Category : <br/>
+								<b>{item.category}</b>
 							</div> 
 							<div className="col">
-								{item.size}
+								Size : <br/>
+								<b>{item.size}</b>
 							</div>
 							<div className="col">
-								{this.randomiser(item.colour, item.id)}
+								Colour : <br/>
+								<b>{item.colour}</b>
 							</div>
 						</div> 
 					</div>
                     )}
                 </div>
 
-                <div className="card-footer pb-0 pt-3">
+                <div className="">
                     <ul className="pagination right">
                         <li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
                             <Link to={{ search: `?page=${pager.currentPage + 1}` }} className="page-link">{pager.currentPage + " "}</Link>
