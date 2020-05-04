@@ -50,10 +50,29 @@ class HomePage extends React.Component
         return randomItem
 	}
 
-    render() {
-        const { pager, pageOfItems } = this.state;
-        return (
+	render() 
+	{
+        const { pager, pageOfItems } = this.state
+		return (
             <div id="items" className="card text-center m-3">
+
+				<div className="sorts text-right">
+					<ul className="legend">
+						<li>
+							<span className="status ready"></span> Ready to try
+						</li>
+						<li>
+							<span className="status on-the-way"></span> On the way
+						</li>
+						<li>
+							<div className="status queued"></div> In the queue
+						</li>
+						<li>
+							<div className="status out-of-stock"></div> Out of stock
+						</li>
+					</ul>
+				</div>
+
                 <div className="card-body"> 
 					{pageOfItems.map(item =>
 					<div key={item.id} id={item.id} className="row">
@@ -62,6 +81,7 @@ class HomePage extends React.Component
 							{/* {item.status} */}
 							</div>
 							<div className="col img col-2 align-self-center">
+								{/* Should be an array of image options */}
 								<img src={`./public/images/${item.id}.jpg`}></img>
 								{/* <img src="https://source.unsplash.com/100x100/?trainer"></img> */}
 							</div>

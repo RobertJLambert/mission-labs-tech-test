@@ -5,6 +5,7 @@
 #items {
     font-size: 1rem;
     line-height: 1rem;
+    padding: 1rem;
 }
 #items .inner {
 	margin: 0 0 1rem 0;
@@ -111,6 +112,7 @@
 
 .col.initials .box {
     border: 1px solid #555;
+    border-radius: 7px;
     text-align: center;
     /* padding: 1rem; */
     width: 4rem;
@@ -118,4 +120,16 @@
     text-align: center;
     display: flex;
     align-items: center;
+}
+
+.sorts li {
+    list-style: none;
+    display: inline-flex;
+}
+
+span.status.ready {
+    display: block;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
 }

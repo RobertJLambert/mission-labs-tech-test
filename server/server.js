@@ -6,13 +6,14 @@ const paginate = require('jw-paginate')
 const mongoose = require('mongoose')
 const User = require('./users')
 
-const port = 4000
-const pageSize = 4
-const numberOfItems = 24
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
+
+//* Always keep your consts at the top
+const port = 4000
+const pageSize = 3
+const numberOfItems = 24
 
 mongoose.connect('mongodb://localhost/mission-labs', { 
 	useNewUrlParser: true, useUnifiedTopology: true 
@@ -128,6 +129,7 @@ app.get('/api/items', (req, res, next) =>
             "size":"UK 4",
             "colour":"Red/Org",
             "status":"ready",
+            "initials":"RL",
         },
         {
             "id":6,
@@ -137,7 +139,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Men",
             "size":"UK 11",
             "colour":"Pink",
-            "status":"In the Queue",
+            "status":"ready",
+            "initials":"JH",
         },
         {
             "id":7,
@@ -147,7 +150,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Junior",
             "size":"UK 3",
             "colour":"Blue",
-            "status":"In the Queue",
+            "status":"on-the-way",
+            "initials":"WTH",
         },
         {
             "id":8,
@@ -158,6 +162,7 @@ app.get('/api/items', (req, res, next) =>
             "size":"UK 9",
             "colour":"Black",
             "status":"ready",
+            "initials":"HEY",
         },
         {
             "id":9,
@@ -167,7 +172,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Women",
             "size":"UK 4",
             "colour":"Red/Org",
-            "status":"ready",
+            "status":"out-of-stock",
+            "initials":"RLY",
         },
         {
             "id":10,
@@ -177,7 +183,8 @@ app.get('/api/items', (req, res, next) =>
             "category":"Junior",
             "size":"UK 3",
             "colour":"Blue",
-            "status":"In the Queue",
+            "status":"queued",
+            "initials":"MUF",
         },
         {
             "id":11,
@@ -187,7 +194,96 @@ app.get('/api/items', (req, res, next) =>
             "category":"Men",
             "size":"UK 11",
             "colour":"Pink",
-            "status":"In the Queue",
+            "status":"on-the-way",
+            "initials":"END",
+        },
+        {
+            "id":4,
+            "brand":"Doggs ",
+            "name": "Subspace",
+            "make":"Originalz",
+            "category":"Junior",
+            "size":"UK 3",
+            "colour":"Blue",
+            "status":"out-of-stock",
+            "initials":"RL",
+        },
+        {
+            "id":5,
+            "brand":"Adidas",
+            "name": "Originalz ",
+            "make":"OZOWEEGO",
+            "category":"Women",
+            "size":"UK 4",
+            "colour":"Red/Org",
+            "status":"ready",
+            "initials":"RL",
+        },
+        {
+            "id":6,
+            "brand":"Nikeeesss",
+            "name": "Max 95 ",
+            "make":"",
+            "category":"Men",
+            "size":"UK 11",
+            "colour":"Pink",
+            "status":"ready",
+            "initials":"JH",
+        },
+        {
+            "id":7,
+            "brand":"Doggs ",
+            "name": "Subspace",
+            "make":"Originalz",
+            "category":"Junior",
+            "size":"UK 3",
+            "colour":"Blue",
+            "status":"on-the-way",
+            "initials":"WTH",
+        },
+        {
+            "id":8,
+            "brand":"Nike Air",
+            "name": "VapourMax ",
+            "make":"FlyIt",
+            "category":"Men",
+            "size":"UK 9",
+            "colour":"Black",
+            "status":"ready",
+            "initials":"HEY",
+        },
+        {
+            "id":9,
+            "brand":"Adidas",
+            "name": "Originalz ",
+            "make":"OZOWEEGO",
+            "category":"Women",
+            "size":"UK 4",
+            "colour":"Red/Org",
+            "status":"out-of-stock",
+            "initials":"RLY",
+        },
+        {
+            "id":10,
+            "brand":"Doggs ",
+            "name": "Subspace",
+            "make":"Originalz",
+            "category":"Junior",
+            "size":"UK 3",
+            "colour":"Blue",
+            "status":"queued",
+            "initials":"MUF",
+        },
+        {
+            "id":11,
+            "brand":"Nikeeesss",
+            "name": "Max 95 ",
+            "make":"",
+            "category":"Men",
+            "size":"UK 11",
+            "colour":"Pink",
+            "status":"on-the-way",
+            "initials":"END",
         },
     ]
 
