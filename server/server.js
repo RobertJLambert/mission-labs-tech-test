@@ -12,7 +12,7 @@ app.use(cors())
 
 //* Always keep your consts at the top
 const port = 4000
-const pageSize = 3
+const pageSize = 4
 const numberOfItems = 24
 
 mongoose.connect('mongodb://localhost/mission-labs', { 
@@ -107,7 +107,7 @@ app.get('/api/items', (req, res, next) =>
             "size":"UK 11",
             "colour":"Pink",
             "status":"queued",
-            "initials":"GMGC",
+            "initials":"GMC",
         },
         {
             "id":4,
@@ -148,7 +148,7 @@ app.get('/api/items', (req, res, next) =>
             "name": "Subspace",
             "make":"Originalz",
             "category":"Junior",
-            "size":"UK 3",
+            "size":"UK 30 (Bigfoot)",
             "colour":"Blue",
             "status":"on-the-way",
             "initials":"WTH",
@@ -198,7 +198,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"END",
         },
         {
-            "id":4,
+            "id":12,
             "brand":"Doggs ",
             "name": "Subspace",
             "make":"Originalz",
@@ -209,7 +209,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"RL",
         },
         {
-            "id":5,
+            "id":13,
             "brand":"Adidas",
             "name": "Originalz ",
             "make":"OZOWEEGO",
@@ -220,7 +220,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"RL",
         },
         {
-            "id":6,
+            "id":14,
             "brand":"Nikeeesss",
             "name": "Max 95 ",
             "make":"",
@@ -231,7 +231,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"JH",
         },
         {
-            "id":7,
+            "id":15,
             "brand":"Doggs ",
             "name": "Subspace",
             "make":"Originalz",
@@ -242,7 +242,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"WTH",
         },
         {
-            "id":8,
+            "id":16,
             "brand":"Nike Air",
             "name": "VapourMax ",
             "make":"FlyIt",
@@ -253,7 +253,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"HEY",
         },
         {
-            "id":9,
+            "id":17,
             "brand":"Adidas",
             "name": "Originalz ",
             "make":"OZOWEEGO",
@@ -264,7 +264,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"RLY",
         },
         {
-            "id":10,
+            "id":18,
             "brand":"Doggs ",
             "name": "Subspace",
             "make":"Originalz",
@@ -275,7 +275,7 @@ app.get('/api/items', (req, res, next) =>
             "initials":"MUF",
         },
         {
-            "id":11,
+            "id":19,
             "brand":"Nikeeesss",
             "name": "Max 95 ",
             "make":"",
@@ -295,8 +295,12 @@ app.get('/api/items', (req, res, next) =>
     const pager = paginate(items.length, page, pageSize);
 
     // get page of items from items array
-    const pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1);
+    const pageOfItems = items.filter(item => item.status == "ready").slice(pager.startIndex, pager.endIndex + 1);
 
+    const p = items.filter(item => item.status == "ready")
+
+    console.log(p)
+    
     // return pager object and current page of items
     return res.json({ pager, pageOfItems });
 })

@@ -3,9 +3,9 @@
 }
 
 #items {
-    font-size: 1rem;
-    line-height: 1rem;
-    padding: 1rem;
+	font-size: 1rem;
+	line-height: 1rem;
+	padding: 1rem;
 }
 #items .inner {
 	margin: 0 0 1rem 0;
@@ -79,57 +79,73 @@
 }
 
 .col {
-    text-align: left;
-    color: #c3c3c3;
+	text-align: left;
+	color: #c3c3c3;
 }
 
 .col.title {
-    font-weight: bold;
-    color: white;
+	font-weight: bold;
+	color: white;
 }
 
-.status {
-    width: 2%;
-    background-color: #63e6ce;
-    display: block;
-    height: 115%;
-    margin: -7px 10px 0 -7px;
-    min-width: 20px;
-    border-radius: 7px 0 0 7px;
+.col.initials {
+    color: #fff;
 }
+.col.initials .box {
+	border: 1px solid #555;
+	border-radius: 7px;
+	text-align: center;
+	/* padding: 1rem; */
+	width: 4rem;
+	height: 4rem;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	color: #fff;
+}
+
+/* Items */
+#items .status {
+	width: 2%;
+	display: block;
+	height: 115%;
+	margin: -7px 10px 0 -7px;
+	min-width: 20px;
+	border-radius: 7px 0 0 7px;
+}
+/* Sorting */
+#sorts li {
+	list-style: none;
+	display: inline-flex;
+	margin-left: 2rem;
+	text-transform: uppercase;
+	font-size: 0.6em;
+	letter-spacing: 0.1rem;
+	padding: 0 0 1rem 0;
+}
+#sorts .status.ready,
+#sorts .status.on-the-way,
+#sorts .status.queued,
+#sorts .status.out-of-stock {
+	display: block;
+	height: 16px;
+	width: 16px;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	align-self: center;
+	margin: 0 0.5rem 0;
+}
+/* Shared with Items & Sorting */
 .status.ready {
-    background-color: #55d5ae;
+	background-color: #55d5ae;
 }
 .status.on-the-way {
-    background-color: #6ba8ef;
+	background-color: #6ba8ef;
 }
 .status.queued {
-    background-color: #f4664b;
+	background-color: #f4664b;
 }
 .status.out-of-stock {
-    background-color: #f10d21;
+	background-color: #f10d21;
 }
 
-.col.initials .box {
-    border: 1px solid #555;
-    border-radius: 7px;
-    text-align: center;
-    /* padding: 1rem; */
-    width: 4rem;
-    height: 4rem;
-    text-align: center;
-    display: flex;
-    align-items: center;
-}
-
-.sorts li {
-    list-style: none;
-    display: inline-flex;
-}
-
-span.status.ready {
-    display: block;
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-}

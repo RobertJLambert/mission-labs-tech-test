@@ -24,11 +24,14 @@ class HomePage extends React.Component
 		this.loadPage()
     }
 
+	/**
+	 * @description Get a page of items from the api
+	 */
 	loadPage() 
 	{
-        // get page of items from api
         const params = new URLSearchParams(location.search)
-        const page = parseInt(params.get('page')) || 1
+		const page = parseInt(params.get('page')) || 1
+		
 		if (page !== this.state.pager.currentPage) 
 		{
             fetch(`/api/items?page=${page}`, { method: 'GET' })
@@ -40,9 +43,9 @@ class HomePage extends React.Component
 	}
 	
 	/**
-	 * @param {Array} make - Make of shoe
-	 * @param {Integer} i - Item id
-	 * @return {String} randomItem - A random item
+	 * @param {array} make - Make of shoe
+	 * @param {number} i - Item id
+	 * @return {string} randomItem - A random item
 	 */
 	randomiser (make, i)
 	{
@@ -55,8 +58,11 @@ class HomePage extends React.Component
         const { pager, pageOfItems } = this.state
 		return (
             <div id="items" className="card text-center m-3">
-
-				<div className="sorts text-right">
+				
+				{/* 
+				 * Sort items nav
+				*/}
+				<nav id="sorts" className="text-right">
 					<ul className="legend">
 						<li>
 							<span className="status ready"></span> Ready to try
@@ -65,19 +71,22 @@ class HomePage extends React.Component
 							<span className="status on-the-way"></span> On the way
 						</li>
 						<li>
-							<div className="status queued"></div> In the queue
+							<span className="status queued"></span> In the queue
 						</li>
 						<li>
-							<div className="status out-of-stock"></div> Out of stock
+							<span className="status out-of-stock"></span> Out of stock
 						</li>
 					</ul>
-				</div>
+				</nav>
 
+				{/* 
+				 * Items (i.e. shoesz :) 
+				*/}
                 <div className="card-body"> 
 					{pageOfItems.map(item =>
 					<div key={item.id} id={item.id} className="row">
 						<div className="inner">
-							<div className={`status ${item.status}`}>
+							<div className={`status ${item.status}`} title={`${item.status}`}>
 							{/* {item.status} */}
 							</div>
 							<div className="col img col-2 align-self-center">
@@ -113,7 +122,15 @@ class HomePage extends React.Component
                     )}
                 </div>
 
+				
+				{/* 
+				 * Pagination 
+				*/}
                 <div className="">
+
+					{/* 
+					* Current page (with next page link) and amount of pages 
+					*/}
                     <ul className="pagination right">
                         <li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
                             <Link to={{ search: `?page=${pager.currentPage + 1}` }} className="page-link">{pager.currentPage + " "}</Link>
@@ -122,6 +139,10 @@ class HomePage extends React.Component
                             <Link to={{ search: `?page=${pager.totalPages}` }} className="page-link">{pager.totalPages}</Link>
                         </li>
                     </ul>
+
+					{/* 
+					* Dotted pages
+					*/}
                     {pager.pages && pager.pages.length &&
                         <ul className="pagination">
                             {pager.pages.map(page =>
@@ -130,7 +151,8 @@ class HomePage extends React.Component
                                 </li>
                             )}
                         </ul>
-                    }           
+                    }
+					      
                 </div>
             </div>
         );
