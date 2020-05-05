@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
+// const paginate = require('./rl-paginate')
 const paginate = require('jw-paginate')
 const mongoose = require('mongoose')
 const User = require('./users')
@@ -288,21 +289,25 @@ app.get('/api/items', (req, res, next) =>
     ]
 
    
-    // get page from query params or default to first page
-    const page = parseInt(req.query.page) || 1;
+    //* get page from query params or default to first page
+    const page = parseInt(req.query.page) || 1
 
-    // get pager object for specified pages
-    const pager = paginate(items.length, page, pageSize);
-
-    // get page of items from items array
-    const pageOfItems = items.filter(item => item.status == "ready").slice(pager.startIndex, pager.endIndex + 1);
-
-    const p = items.filter(item => item.status == "ready")
-
-    console.log(p)
+    const filter = req.query.filter || "ready"
     
-    // return pager object and current page of items
-    return res.json({ pager, pageOfItems });
+    //* get pager object for specified pages
+    const pager = paginate(items.filter(item => item.status == filter).length, page, pageSize);
+
+    //* get page of items from items array
+    const pageOfItems = items
+                            .filter(item => item.status == filter)
+                            .slice(pager.startIndex, pager.endIndex + 1)
+
+    const p = items.filter(item => item.status == filter)
+
+    console.log(filter)
+    
+    //* return pager object and current page of items
+    return res.json({ pager, pageOfItems, filter })
 })
 
 function randomiser (make, i)

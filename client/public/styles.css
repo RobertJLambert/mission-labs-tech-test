@@ -89,7 +89,7 @@
 }
 
 .col.initials {
-    color: #fff;
+	color: #fff;
 }
 .col.initials .box {
 	border: 1px solid #555;
@@ -123,6 +123,9 @@
 	letter-spacing: 0.1rem;
 	padding: 0 0 1rem 0;
 }
+#sorts a {
+    display: flex;
+}
 #sorts .status.ready,
 #sorts .status.on-the-way,
 #sorts .status.queued,
@@ -148,4 +151,5 @@
 .status.out-of-stock {
 	background-color: #f10d21;
 }
+
 
