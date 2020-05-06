@@ -54,6 +54,7 @@
 .page-item:first-child .page-link,
 .page-item:last-child .page-link {
 	border-radius: 0.5rem;
+	padding: 1re;
 }
 .page-item.next-item,
 .page-item.last-item {
@@ -126,10 +127,12 @@
 #sorts a {
     display: flex;
 }
+#sorts .status.all, 
 #sorts .status.ready,
 #sorts .status.on-the-way,
 #sorts .status.queued,
-#sorts .status.out-of-stock {
+#sorts .status.out-of-stock
+ {
 	display: block;
 	height: 16px;
 	width: 16px;
@@ -139,6 +142,9 @@
 	margin: 0 0.5rem 0;
 }
 /* Shared with Items & Sorting */
+.status.all {
+	background-color: #ffffff;
+}
 .status.ready {
 	background-color: #55d5ae;
 }
@@ -153,3 +159,8 @@
 }
 
 
+
+
+.page-item.disabled .page-link {
+    background: none;
+}

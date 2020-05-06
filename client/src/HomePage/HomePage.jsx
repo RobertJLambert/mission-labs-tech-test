@@ -15,9 +15,7 @@ class HomePage extends React.Component
 
 		}
 	}
- 
 
-// module.export = paginate;
 	componentDidMount() 
 	{
 		this.loadPage()
@@ -37,7 +35,7 @@ class HomePage extends React.Component
 	{
 		const params = new URLSearchParams(location.search)
 		const page = parseInt(params.get('page')) || 1
-		const filter = String(params.get('filter'))
+		const filter = String(params.get('filter')) || "all"
 		
 		console.log('loadPage()')
 		console.log(this.state.pager)
@@ -62,7 +60,7 @@ class HomePage extends React.Component
 	randomiser (make, i)
 	{
 		var randomItem = make[Math.floor(Math.random()*make.length)]
-        return randomItem
+    return randomItem
 	}
 
 	render() 
@@ -79,7 +77,7 @@ class HomePage extends React.Component
 					<ul className="legend">
 						<li>
 							<Link to={{ search: `?page=1&filter=all` }}>
-								{/* <span className="status all"></span> View All */} View All 
+								<span className="status all"></span> View All 
 							</Link>
 						</li>
 						<li>
@@ -168,7 +166,7 @@ class HomePage extends React.Component
 									</Link>
 							</li>
 							<li className={`page-item last-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
-									<Link to={{ search: `?page=${pager.totalPages}&filter=on-the-way` }} className="page-link">
+									<Link to={{ search: `?page=${pager.totalPages}&filter=${filter}` }} className="page-link">
 										{pager.totalPages}
 									</Link>
 							</li>

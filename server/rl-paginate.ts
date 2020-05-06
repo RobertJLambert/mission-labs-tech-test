@@ -2,7 +2,8 @@ function paginate(
   totalItems: number,
   currentPage: number = 1,
   pageSize: number = 10,
-  maxPages: number = 10
+  maxPages: number = 10,
+    filter
 ) {
   // calculate total pages
   let totalPages = Math.ceil(totalItems / pageSize);
@@ -55,7 +56,8 @@ function paginate(
     endPage: endPage,
     startIndex: startIndex,
     endIndex: endIndex,
-    pages: pages
+    pages: pages,
+    filter: filter, 
   };
 }
 
