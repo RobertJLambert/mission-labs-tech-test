@@ -49,35 +49,11 @@ db.once('open', async () =>
 	.then(() => console.log('Added Items'))
 })
 
-// db.once('open', async () => 
-// {
-// 	if (await User.countDocuments().exec() > 0) 
-// 		return
 
-// 	Promise.all([
-// 		User.create({ name: 'User 1' }),
-// 		User.create({ name: 'User 2' }),
-// 		User.create({ name: 'User 3' }),
-// 		User.create({ name: 'User 4' }),
-// 		User.create({ name: 'User 5' }),
-// 		User.create({ name: 'User 6' }),
-// 		User.create({ name: 'User 7' }),
-// 		User.create({ name: 'User 8' }),
-// 		User.create({ name: 'User 9' }),
-// 		User.create({ name: 'User 10' }),
-// 		User.create({ name: 'User 11' }),
-// 		User.create({ name: 'User 12' })
-// 	])
-// 	.then(() => console.log('Added Users'))
-// })
-
-
-
-
-// GET home page.
+// Route home page - redirect to a better start page with defaults
 app.get('/', function(req, res) 
 {
-	res.redirect('/?page=1&filter=all')
+	res.redirect('http://localhost:8080/?page=1&filter=all')
 })
 
 
@@ -332,6 +308,17 @@ app.post('/api/items', (req, res) =>
 	console.log(items)
 
 	res.send(brand + " ")
+})
+
+
+//* Delete item API
+app.delete('/api/items:id', (req, res) => 
+{
+	var id= req.body.id
+	items.splice[id]	
+	console.log(id)
+
+	res.send(id + " ")
 })
 
 
