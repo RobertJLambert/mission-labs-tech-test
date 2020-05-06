@@ -36,6 +36,8 @@ class HomePage extends React.Component
 		const params = new URLSearchParams(location.search)
 		const page = parseInt(params.get('page')) || 1
 		const filter = String(params.get('filter')) || "all"
+
+
 		
 		console.log('loadPage()')
 		console.log(this.state.pager)
@@ -190,5 +192,6 @@ class HomePage extends React.Component
       )
     }
 }
+
 
 export { HomePage };
