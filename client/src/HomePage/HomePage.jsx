@@ -9,12 +9,15 @@ class HomePage extends React.Component
 
 		this.state = 
 		{
-            pager: {},
-            pageOfItems: [],
-						filter : ""
-        };
-    }
+			pager: {}, 
+			pageOfItems: [], 
+			filter : "", 
 
+		}
+	}
+ 
+
+// module.export = paginate;
 	componentDidMount() 
 	{
 		this.loadPage()
@@ -34,17 +37,20 @@ class HomePage extends React.Component
 	{
 		const params = new URLSearchParams(location.search)
 		const page = parseInt(params.get('page')) || 1
-		const filter = params.get('filter')
-
-		console.log('loadPage()')
+		const filter = String(params.get('filter'))
 		
-		if (page !== this.state.pager.currentPage) 
+		console.log('loadPage()')
+		console.log(this.state.pager)
+
+		if (page !== this.state.pager.currentPage || filter !== this.state.pager.filter) 
 		{
 			fetch(`/api/items?page=${page}&filter=${filter}`, { method: 'GET' })
 				.then(response => response.json())
 				.then(({pager, pageOfItems, filter}) => {
-						this.setState({ pager, pageOfItems, filter });
+					this.setState({ pager, pageOfItems, filter });
 				})
+
+				console.log('fetch(`/api/items?page=')
 			}
 	}
 	
@@ -72,54 +78,32 @@ class HomePage extends React.Component
 				<nav id="sorts" className="text-right">
 					<ul className="legend">
 						<li>
-							<Link to={{ search: `?page=${pager.currentPage}&filter=ready`}}>
+							<Link to={{ search: `?page=1&filter=all` }}>
+								{/* <span className="status all"></span> View All */} View All 
+							</Link>
+						</li>
+						<li>
+							<Link to={{ search: `?page=1&filter=ready` }}>
 								<span className="status ready"></span> Ready to try 
 							</Link>
 						</li>
 						<li>
-							<Link to={{ search: `?page=${pager.currentPage}&filter=on-the-way`}}>
+							<Link to={{ search: `?page=1&filter=on-the-way`}}>
 								<span className="status on-the-way"></span> On the way
 							</Link>
 						</li>
 						<li>
-							<span className="status queued"></span> In the queue
+							<Link to={{ search: `?page=1&filter=queued`}}>
+								<span className="status queued"></span> In the queue
+							</Link>
 						</li>
 						<li>
-							<span className="status out-of-stock"></span> Out of stock
+							<Link to={{ search: `?page=1&filter=out-of-stock`}}>
+								<span className="status out-of-stock"></span> Out of stock
+							</Link>
 						</li>
 					</ul>
 				</nav>
-
-
-<nav className="">
-
-					{/* 
-					 * Current page (with next page link) and amount of pages with last page link nav
-				 	 */}
-					<ul className="pagination right">
-							<li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
-									<Link to={{ search: `?page=${pager.currentPage + 1}&filter=${filter}` }} className="page-link">{pager.currentPage}</Link>
-							</li>
-							<li className={`page-item last-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
-									<Link to={{ search: `?page=${pager.totalPages}&filter=${filter}` }} className="page-link">{pager.totalPages}</Link>
-							</li>
-					</ul>
-
-					{/* 
-					 * Dotted page number nav
-					 */}
-					{pager.pages && pager.pages.length && 
-							<ul className="pagination">
-									{pager.pages.map(page =>
-											<li key={page} className={`page-item number-item ${pager.currentPage === page ? 'active' : ''}`}>
-													<Link to={{ search: `?page=${page}&filter=${filter}` }} className="page-link nav-dots">{}</Link>
-											</li>
-									)}
-							</ul>
-					}
-			
-					</nav>
-
 
 				{/* 
 				 * Items (i.e. shoesz :) 
@@ -130,8 +114,6 @@ class HomePage extends React.Component
 						<div className="inner">
 							<div className={`status ${item.status}`} title={`${item.status}`}>
 							</div>
-
-							
 							<div className="col img col-2 align-self-center">
 								{/* Should be an array of image options */}
 								<img src={`./public/images/${item.id}.jpg`}></img>
@@ -174,12 +156,40 @@ class HomePage extends React.Component
 				{/* 
 				 * Pagination 
 				*/}
-				
+				<nav>
 
+					{/* 
+					 * Current page (with next page link) and amount of pages with last page link nav
+				 	 */}
+					<ul className="pagination right">
+							<li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
+									<Link to={{ search: `?page=${pager.currentPage + 1}&filter=${filter}` }} className="page-link">
+										{pager.currentPage}
+									</Link>
+							</li>
+							<li className={`page-item last-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
+									<Link to={{ search: `?page=${pager.totalPages}&filter=on-the-way` }} className="page-link">
+										{pager.totalPages}
+									</Link>
+							</li>
+					</ul>
 
-
-				</div>
-        );
+					{/* 
+					 * Dotted page number nav
+					 */}
+					{pager.pages && pager.pages.length && 
+							<ul className="pagination">
+									{pager.pages.map(page =>
+											<li key={page} className={`page-item number-item ${pager.currentPage === page ? 'active' : ''}`}>
+													<Link to={{ search: `?page=${page}&filter=${filter}` }} className="page-link nav-dots">{}</Link>
+											</li>
+									)}
+							</ul>
+					}
+		
+				</nav>
+			</div>
+      )
     }
 }
 

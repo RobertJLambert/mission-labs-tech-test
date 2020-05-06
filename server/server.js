@@ -2,15 +2,21 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
-// const paginate = require('./rl-paginate')
-const paginate = require('jw-paginate')
+// const paginate = require('./rl-paginate.js')
+// const paginate = require('jw-paginate')
 const mongoose = require('mongoose')
 const User = require('./users')
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cors())
+const Window = require('window');
 
+const window = new Window();
+
+const div = window.document.createElement('div');
+// HTMLDivElement
+
+div instanceof window.HTMLElement
 //* Always keep your consts at the top
 const port = 4000
 const pageSize = 4
@@ -294,21 +300,126 @@ app.get('/api/items', (req, res, next) =>
 
     const filter = req.query.filter || "ready"
     
-    //* get pager object for specified pages
-    const pager = paginate(items.filter(item => item.status == filter).length, page, pageSize);
+    //* get pager object for specified pages 
+    if (filter == "all") {
+    // pager = paginate(items.filter(item => item.status == filter).length, 
+    //                         page, 
+    //                         pageSize, 
+    //                         10, 
+        itemsz = items
+    //                         filter);
+    } else {
+    //  pager = paginate(items.length, 
+    //                         page, 
+    //                         pageSize, 
+    //                         10, 
+        itemsz = items.filter(item => item.status == filter)
+    //                         filter);
+    }
+    const pager = paginate(itemsz.length, 
+                            page, 
+                            pageSize, 
+                            10, 
+                            filter);
 
     //* get page of items from items array
-    const pageOfItems = items
-                            .filter(item => item.status == filter)
+     
+    if (filter == "all") {
+    // pager = paginate(items.filter(item => item.status == filter).length, 
+    //                         page, 
+    //                         pageSize, 
+    //                         10, 
+        itemszp = items
+    //                         filter);
+    } else {
+    //  pager = paginate(items.length, 
+    //                         page, 
+    //                         pageSize, 
+    //                         10, 
+        itemszp = items.filter(item => item.status == filter)
+    //                         filter);
+    }
+    const pageOfItems = itemszp
                             .slice(pager.startIndex, pager.endIndex + 1)
 
-    const p = items.filter(item => item.status == filter)
+    // const p = items.filter(item => item.status == filter)
 
-    console.log(filter)
+    // console.log(( pageOfItems ))
+    console.log('filter : ' + filter )
     
     //* return pager object and current page of items
     return res.json({ pager, pageOfItems, filter })
 })
+
+
+function paginate( totalItems, currentPage, pageSize, maxPages,  filter ) 
+{
+  // calculate total pages
+  let totalPages = Math.ceil(totalItems / pageSize);
+
+    console.log('paginate() filter : ' + filter )
+  // ensure current page isn't out of range
+  if (currentPage < 1) { 
+      currentPage = 1; 
+  } else if (currentPage > totalPages) { 
+      currentPage = totalPages; 
+  }
+
+  var startPage = 1
+  var endPage = 10;
+  if (totalPages <= maxPages) {
+    // total pages less than max so show all pages
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    // total pages more than max so calculate start and end pages
+    let maxPagesBeforeCurrentPage = Math.floor(maxPages / 2);
+    let maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1;
+    if (currentPage <= maxPagesBeforeCurrentPage) {
+      // current page near the start
+      startPage = 1;
+      endPage = maxPages;
+    } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+      // current page near the end
+      startPage = totalPages - maxPages + 1;
+      endPage = totalPages;
+    } else {
+      // current page somewhere in the middle
+      startPage = currentPage - maxPagesBeforeCurrentPage;
+      endPage = currentPage + maxPagesAfterCurrentPage;
+    }
+  }
+
+  // calculate start and end item indexes
+  let startIndex = (currentPage - 1) * pageSize;
+  let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+
+  // create an array of pages to ng-repeat in the pager control
+
+console.log('startPage ' + startPage + ', endPage ' + endPage);
+  let pages = Array.from(Array((endPage + 1) - startPage).keys()).map(i => startPage + i);
+    //   let pages = Array.from(Array((1 + 1) - 1).keys()).map(i => startPage + i);
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // const params = new URLSearchParams(location.search)
+    // const page = parseInt(params.get('page')) || 1
+    // const filter = urlParams.get('filter')
+
+  // return object with all pager properties required by the view
+  return {
+    filter: filter, 
+    totalItems: totalItems,
+    currentPage: currentPage,
+    pageSize: pageSize,
+    totalPages: totalPages,
+    startPage: startPage,
+    endPage: endPage,
+    startIndex: startIndex,
+    endIndex: endIndex,
+    pages: pages,
+  };
+}
+
 
 function randomiser (make, i)
 {
