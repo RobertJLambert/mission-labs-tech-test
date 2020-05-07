@@ -1,6 +1,6 @@
 # mission-labs-tech-test
  
-> cd into /server
+- > cd into /server
 > npm start
 > cd into /client
 > npm start
