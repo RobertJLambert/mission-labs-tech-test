@@ -87,6 +87,9 @@
 .col.title {
 	font-weight: bold;
 	color: white;
+	padding-left: 0;
+	margin-left: 0;
+	float: left;
 }
 
 .col.initials {
@@ -97,8 +100,8 @@
 	border-radius: 7px;
 	text-align: center;
 	/* padding: 1rem; */
-	width: 4rem;
-	height: 4rem;
+	width: 3rem;
+	height: 3rem;
 	text-align: center;
 	display: flex;
 	align-items: center;
@@ -123,9 +126,11 @@
 	font-size: 0.6em;
 	letter-spacing: 0.1rem;
 	padding: 0 0 1rem 0;
+	align-content: cp;
 }
 #sorts a {
     display: flex;
+    color: #fff;
 }
 #sorts .status.all, 
 #sorts .status.ready,
@@ -163,4 +168,8 @@
 
 .page-item.disabled .page-link {
     background: none;
+}#items .col.img {
+    width: 240px;
+    display: list-item;
+    margin-right: 1rem;
 }

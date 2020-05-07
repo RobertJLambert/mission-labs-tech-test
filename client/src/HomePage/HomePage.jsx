@@ -119,11 +119,6 @@ class HomePage extends React.Component
 								<img src={`./public/images/${item.id}.jpg`}></img>
 								{/* <img src="https://source.unsplash.com/100x100/?trainer"></img> */}
 							</div>
-
-							
-							{item.id}
-
-
 							<div className="col title align-self-center">
 								{item.brand}<br/>
 								{item.name}<br/>
@@ -162,6 +157,11 @@ class HomePage extends React.Component
 					 * Current page (with next page link) and amount of pages with last page link nav
 				 	 */}
 					<ul className="pagination right">
+							<li className={`page-item prev-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
+									<Link to={{ search: `?page=${pager.currentPage - 1}&filter=${filter}` }} className="page-link">
+										 Home
+									</Link>
+							</li>
 							<li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
 									<Link to={{ search: `?page=${pager.currentPage + 1}&filter=${filter}` }} className="page-link">
 										{pager.currentPage}

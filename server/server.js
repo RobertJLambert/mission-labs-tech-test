@@ -314,9 +314,9 @@ app.post('/api/items', (req, res) =>
 //* Delete item API
 app.delete('/api/items:id', (req, res) => 
 {
-	var id= req.body.id
-	items.splice[id]	
-	console.log(id)
+	let query = {_id:req.body.id}
+	// items.splice[id]	
+	// console.log(id)
 
 	res.send(id + " ")
 })
