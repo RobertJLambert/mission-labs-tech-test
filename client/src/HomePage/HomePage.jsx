@@ -157,11 +157,6 @@ class HomePage extends React.Component
 					 * Current page (with next page link) and amount of pages with last page link nav
 				 	 */}
 					<ul className="pagination right">
-							<li className={`page-item prev-item ${pager.currentPage === 1 ? 'disabled' : ''}`}>
-									<Link to={{ search: `?page=${pager.currentPage - 1}&filter=${filter}` }} className="page-link">
-										 Home
-									</Link>
-							</li>
 							<li className={`page-item next-item ${pager.currentPage === pager.totalPages ? 'disabled' : ''}`}>
 									<Link to={{ search: `?page=${pager.currentPage + 1}&filter=${filter}` }} className="page-link">
 										{pager.currentPage}

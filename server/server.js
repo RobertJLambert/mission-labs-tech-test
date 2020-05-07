@@ -53,7 +53,7 @@ db.once('open', async () =>
 // Route home page - redirect to a better start page with defaults
 app.get('/', function(req, res) 
 {
-	res.redirect('http://localhost:8080/?page=1&filter=all')
+	res.redirect('/?page=1&filter=all')
 })
 
 
@@ -288,7 +288,9 @@ app.get('/api/items', (req, res, next) =>
 				itemsFiltered = items.filter(item => item.status == filter)
 		}
 		
+		// if (filter && page) {
 		const pager = paginate(itemsFiltered.length, page, pageSize,	10, filter);
+		// }
 
 		//* get page of items from items array
 		const pageOfItems = itemsFiltered.slice(pager.startIndex, pager.endIndex + 1)

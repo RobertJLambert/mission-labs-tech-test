@@ -54,7 +54,6 @@
 .page-item:first-child .page-link,
 .page-item:last-child .page-link {
 	border-radius: 0.5rem;
-	padding: 1re;
 }
 .page-item.next-item,
 .page-item.last-item {
@@ -112,8 +111,9 @@
 #items .status {
 	width: 2%;
 	display: block;
-	height: 115%;
-	margin: -7px 10px 0 -7px;
+	height: 114%;
+	height: 130px;
+	margin: -8px 8px -8px -8px;
 	min-width: 20px;
 	border-radius: 7px 0 0 7px;
 }
