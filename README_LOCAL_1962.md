@@ -1,7 +1,5 @@
 # mission-labs-tech-test
-
- hi
-
+ 
 - > git clone https://github.com/RobertJLambert/mission-labs-tech-test.git
 - > cd into /server
 - > npm install
